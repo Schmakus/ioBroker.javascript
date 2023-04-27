@@ -186,7 +186,7 @@ Blockly.JavaScript['timeouts_settimeout'] = function(block) {
         delay *= 1000;
     }
     var statements_name = Blockly.JavaScript.statementToCode(block, 'STATEMENT');
-    return name + ' = setTimeout(async function () {\n' + statements_name + '}, ' + delay + ');\n';
+    return name + ' = setTimeout(async function () {\n' + statements_name + '\n' + name + ' = null;}, ' + delay + ');\n';
 };
 
 // --- setTimeout variable -----------------------------------------------------------
@@ -244,7 +244,7 @@ Blockly.JavaScript['timeouts_settimeout_variable'] = function(block) {
     var delay = Blockly.JavaScript.valueToCode(block, 'DELAY_MS', Blockly.JavaScript.ORDER_ATOMIC);
     var name  = Blockly.JavaScript.variableDB_.safeName_(block.getFieldValue('NAME'));
     var statements_name = Blockly.JavaScript.statementToCode(block, 'STATEMENT');
-    return name + ' = setTimeout(async function () {\n' + statements_name + '}, parseInt(' + delay + '));\n';
+    return name + ' = setTimeout(async function () {\n' + statements_name + '\n' + name + ' = null;}, parseInt(' + delay + '));\n';
 };
 
 // --- clearTimeout -----------------------------------------------------------
